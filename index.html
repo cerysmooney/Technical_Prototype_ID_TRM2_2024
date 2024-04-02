@@ -18,21 +18,63 @@
 
     <!-- Linking Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <script>
-        let mapOptions = {
-            center: [51.958, 9.141],
-            zoom: 10
-        };
-
-        // Initialize the map correctly using L.map
-        let map = L.map('map', mapOptions);
-
-        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        map.addLayer(layer);
-
-        let marker = new L.Marker([51.958, 9.141]);
-        marker.addTo(map);
+        const map = L.map('map'); 
+        // Initializes map
+    
+        map.setView([51.505, -0.09], 13); 
+        // Sets initial coordinates and zoom level
+    
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map); 
+        // Sets map data source and associates with map
+    
+        let marker, circle, zoomed;
+    
+        navigator.geolocation.watchPosition(success, error);
+    
+        function success(pos) {
+    
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const accuracy = pos.coords.accuracy;
+    
+            if (marker) {
+                map.removeLayer(marker);
+                map.removeLayer(circle);
+            }
+            // Removes any existing marker and circle (new ones about to be set)
+    
+            marker = L.marker([lat, lng]).addTo(map);
+            circle = L.circle([lat, lng], { radius: accuracy*2 }).addTo(map);
+            // Adds marker to the map and a circle for accuracy
+    
+            if (!zoomed) {
+                zoomed = map.fitBounds(circle.getBounds()); 
+            }
+            // Set zoom to boundaries of accuracy circle
+    
+            map.setView([lat, lng]);
+            // Set map focus to current user position
+    
+            // Add another marker to specific coordinates
+            const specificLat = 51.45544; 
+            const specificLng = -2.61891; 
+            const specificMarker = L.marker([specificLat, specificLng]).addTo(map);
+    
+        }
+    
+        function error(err) {
+    
+            if (err.code === 1) {
+                alert("Please allow geolocation access");
+            } else {
+                alert("Cannot get current location");
+            }
+    
+        }
     </script>
 </body>
 </html>

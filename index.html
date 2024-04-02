@@ -69,32 +69,45 @@
     
 
 
-            // bee's knees marker orute
+            // bee's knees marker route
             const bkLat = 51.45544;
             const bkLng = -2.61891;
             const bkMarker = L.marker([bkLat, bkLng]).addTo(map);
     
-            // popup content for 1st marker
+            // popup content for bk route marker
             const bkPopupContent = `
-                <div class="firstPopup" style="text-align: center;">
+                <div class="bkPopup" style="text-align: center;">
                     <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
                     <p>This is the Bee's Knees Park Route </p>
-                    <button onclick="navigateToSpecificRoute()">Navigate</button>
+                    <button onclick="navigateToBkRoute()">Navigate</button>
                 </div>
             `;
 
             bkMarker.bindPopup(bkPopupContent); //binding first popup to bk marker
 
 
-            
-    
-            const anotherLat = 51.447768;
-            const anotherLng = -2.618752;
-            const anotherMarker = L.marker([anotherLat, anotherLng]).addTo(map);
+
+            // farm marker route
+            const farmLat = 51.447768;
+            const farmLng = -2.618752;
+            const farmMarker = L.marker([farmLat, farmLng]).addTo(map);
 
             
-            anotherMarker.bindPopup(anotherPopupContent);
+            // popup content for farm route marker
+            const farmPopupContent = `
+                <div class="farmPopup" style="text-align: center;">
+                    <img src="Icons/Images/FarmRoute.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
+                    <p>This is the Farm Route </p>
+                    <button onclick="navigateToSpecificRoute()">Navigate</button>
+                </div>
+            `;
+            farmMarker.bindPopup(farmPopupContent);
     
+
+
+
+
+
             const lastLat = 51.45369;
             const lastLng = -2.61000;
             const lastMarker = L.marker([lastLat, lastLng]).addTo(map);
@@ -111,7 +124,7 @@
     
         }
     
-        function navigateToSpecificRoute() {
+        function navigateToBkRoute() {
         
             alert("Navigating to the Bee's Knees Park Route...");
         }

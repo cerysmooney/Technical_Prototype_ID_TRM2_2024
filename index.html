@@ -105,12 +105,19 @@
     
 
 
+            // busy bee route
+            const bbLat = 51.45369;
+            const bbLng = -2.61000;
+            const busyBeeMarker = L.marker([bbLat, bbLng]).addTo(map);
 
-
-
-            const lastLat = 51.45369;
-            const lastLng = -2.61000;
-            const lastMarker = L.marker([lastLat, lastLng]).addTo(map);
+            const busyBeePopupContent = `
+                <div class="busyBeePopup" style="text-align: center;">
+                    <img src="Icons/Images/BusyBee.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
+                    <p>This is the Busy Bee Route </p>
+                    <button onclick="navigateToBusyBeeRoute()">Navigate</button>
+                </div>
+            `;
+            busyBeeMarker.bindPopup(busyBeePopupContent);
     
         }
     
@@ -131,6 +138,10 @@
 
         function navigateToFarmRoute(){
             alert("Navigating to the Farm Route...");
+        }
+
+        function navigateToBusyBeeRoute(){
+            alert("Navigating to the Busy Bee Route...");
         }
     </script>
 </body>

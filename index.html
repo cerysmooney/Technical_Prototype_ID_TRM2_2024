@@ -22,9 +22,9 @@
         // initializing map
         const map = L.map('map'); 
     
-      // cordinates and zoom level 
+        // coordinates and zoom level 
         map.setView([51.505, -0.09], 13); 
-
+    
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
@@ -40,48 +40,59 @@
             const lat = pos.coords.latitude;
             const lng = pos.coords.longitude;
             const accuracy = pos.coords.accuracy;
-
-    // Removes any existing marker and circle (new ones about to be set)
+    
+            // Removes any existing marker and circle (new ones about to be set)
             if (marker) {
                 map.removeLayer(marker);
                 map.removeLayer(circle);
             }
-            
-
-            
-        // user location icon
-        const userIcon = L.icon({
-            iconUrl: 'Icons/navigation.png',
-            iconSize: [24, 24],
-            // shadowSize: [30,30],
-            // shadowUrl: 'Icons/navigation.png'
-           
-        });
+    
+            // user location icon
+            const userIcon = L.icon({
+                iconUrl: 'Icons/navigation.png',
+                iconSize: [24, 24],
+                // shadowSize: [30,30],
+                // shadowUrl: 'Icons/navigation.png'
+            });
+    
             // marker to the map and a circle for accuracy
             marker = L.marker([lat, lng], { icon: userIcon }).addTo(map);
-            circle = L.circle([lat, lng], { radius: accuracy*2 }).addTo(map);
+            circle = L.circle([lat, lng], { radius: accuracy * 2 }).addTo(map);
     
             // zoom in boundaries
             if (!zoomed) {
-                zoomed = map.fitBounds(circle.getBounds()); 
+                zoomed = map.fitBounds(circle.getBounds());
             }
-            
+    
             // focus on user's current position
             map.setView([lat, lng]);
-   
     
             // markers for specific routes 
-            const specificLat = 51.45544; 
-            const specificLng = -2.61891; 
+            const specificLat = 51.45544;
+            const specificLng = -2.61891;
             const specificMarker = L.marker([specificLat, specificLng]).addTo(map);
+    
+     // Define popup content for the specific marker
+        const specificPopupContent = `
+            <div class="firstPopup" style="text-align: center;">
+             <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
+             <p>This is the Bee's Knees Park Route </p>
+             </div>
+                    `;
+    
+            specificMarker.bindPopup(specificPopupContent); // Bind popup to marker
     
             const anotherLat = 51.447768;
             const anotherLng = -2.618752;
-            const anotherMarker = L.marker([anotherLat,anotherLng]).addTo(map);
-
+            const anotherMarker = L.marker([anotherLat, anotherLng]).addTo(map);
+    
+          
+    
             const lastLat = 51.45369;
             const lastLng = -2.61000;
-            const lastMarker = L.marker([lastLat,lastLng]).addTo(map);
+            const lastMarker = L.marker([lastLat, lastLng]).addTo(map);
+    
+        
         }
     
         function error(err) {

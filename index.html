@@ -49,6 +49,7 @@
     
             marker = L.marker([lat, lng]).addTo(map);
             circle = L.circle([lat, lng], { radius: accuracy*2 }).addTo(map);
+
             // Adds marker to the map and a circle for accuracy
     
             if (!zoomed) {
@@ -64,6 +65,9 @@
             const specificLng = -2.61891; 
             const specificMarker = L.marker([specificLat, specificLng]).addTo(map);
     
+            const anotherLat = 51.447768;
+            const anotherLng = -2.618752;
+            const anotherMarker = L.marker([anotherLat,anotherLng]).addTo(map);
         }
     
         function error(err) {

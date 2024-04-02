@@ -67,25 +67,33 @@
             // focus on user's current position
             map.setView([lat, lng]);
     
-            // markers for specific routes 
-            const specificLat = 51.45544;
-            const specificLng = -2.61891;
-            const specificMarker = L.marker([specificLat, specificLng]).addTo(map);
+
+
+            // bee's knees marker orute
+            const bkLat = 51.45544;
+            const bkLng = -2.61891;
+            const bkMarker = L.marker([bkLat, bkLng]).addTo(map);
     
             // popup content for 1st marker
-            const specificPopupContent = `
+            const bkPopupContent = `
                 <div class="firstPopup" style="text-align: center;">
                     <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
                     <p>This is the Bee's Knees Park Route </p>
                     <button onclick="navigateToSpecificRoute()">Navigate</button>
                 </div>
             `;
-    
-            specificMarker.bindPopup(specificPopupContent); // binding popup to 1st marker
+
+            bkMarker.bindPopup(bkPopupContent); //binding first popup to bk marker
+
+
+            
     
             const anotherLat = 51.447768;
             const anotherLng = -2.618752;
             const anotherMarker = L.marker([anotherLat, anotherLng]).addTo(map);
+
+            
+            anotherMarker.bindPopup(anotherPopupContent);
     
             const lastLat = 51.45369;
             const lastLng = -2.61000;

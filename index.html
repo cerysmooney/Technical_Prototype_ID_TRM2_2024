@@ -29,7 +29,7 @@
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map); 
-        // Sets map data source and associates with map
+        //map data source and associates with map
     
         let marker, circle, zoomed;
     
@@ -41,7 +41,7 @@
             const lng = pos.coords.longitude;
             const accuracy = pos.coords.accuracy;
     
-            // Removes any existing marker and circle (new ones about to be set)
+            // removes any existing marker and circle (new ones about to be set)
             if (marker) {
                 map.removeLayer(marker);
                 map.removeLayer(circle);
@@ -72,27 +72,25 @@
             const specificLng = -2.61891;
             const specificMarker = L.marker([specificLat, specificLng]).addTo(map);
     
-     // Define popup content for the specific marker
-        const specificPopupContent = `
-            <div class="firstPopup" style="text-align: center;">
-             <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
-             <p>This is the Bee's Knees Park Route </p>
-             </div>
-                    `;
+            // popup content for 1st marker
+            const specificPopupContent = `
+                <div class="firstPopup" style="text-align: center;">
+                    <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
+                    <p>This is the Bee's Knees Park Route </p>
+                    <button onclick="navigateToSpecificRoute()">Navigate</button>
+                </div>
+            `;
     
-            specificMarker.bindPopup(specificPopupContent); // Bind popup to marker
+            specificMarker.bindPopup(specificPopupContent); // binding popup to 1st marker
     
             const anotherLat = 51.447768;
             const anotherLng = -2.618752;
             const anotherMarker = L.marker([anotherLat, anotherLng]).addTo(map);
     
-          
-    
             const lastLat = 51.45369;
             const lastLng = -2.61000;
             const lastMarker = L.marker([lastLat, lastLng]).addTo(map);
     
-        
         }
     
         function error(err) {
@@ -103,6 +101,11 @@
                 alert("Cannot get current location");
             }
     
+        }
+    
+        function navigateToSpecificRoute() {
+        
+            alert("Navigating to the Bee's Knees Park Route...");
         }
     </script>
 </body>

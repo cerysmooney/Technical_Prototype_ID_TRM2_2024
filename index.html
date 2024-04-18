@@ -10,7 +10,6 @@
     <!-- Linking Leaflet Routing Machine Styles-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.css" />
     <style>
-
         body {
             margin: 0;
             padding: 0;
@@ -44,6 +43,16 @@
             #map {
                 height: 50vh; 
             }
+        }
+        
+        /* styling the directions box */
+        .leaflet-routing-container {
+            width: 200px; 
+            height: 200px; 
+            overflow-y: auto; /* scrollbar incase of overflow*/
+            border: 1px solid #ccc; /*  border for visibility */
+            background-color: whitesmoke; /*  solid background for visibility */
+            text-align: center;
         }
     </style>
 </head>

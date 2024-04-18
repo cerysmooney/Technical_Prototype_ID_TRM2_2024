@@ -7,6 +7,8 @@
     <link rel="icon" href="Icons/Logo.png">
     <!-- Linking Leaflet Styles-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> 
+    <!-- Linking Leaflet Routing Machine Styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.css" />
     <style>
 
         body {
@@ -32,6 +34,9 @@
 
     <!-- Linking Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Linking Leaflet Routing Machine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
     <script>
         // initializing map
         const map = L.map('map'); 
@@ -51,7 +56,9 @@
     
         // map element variables
         let marker, circle, zoomed;
-
+        let bkMarker, farmMarker, busyBeeMarker;
+        let routeControl; // Variable to store the route control
+        
         // tracking if markers have been created
         let markersCreated = false;
     
@@ -97,14 +104,14 @@
     
 
             // bee's knees marker route
-            const bkMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map); // 1.3 to space marker away from user
+            bkMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map); // 1.3 to space marker away from user
     
             // popup content for bk route marker
             const bkPopupContent = `
                 <div class="bkPopup" style="text-align: center;">
                     <img src="Icons/Images/BeesKnees.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
                     <p>This is the Bee's Knees Park Route </p>
-                    <button onclick="navigateToBkRoute()">Navigate</button>
+                    <button onclick="navigateToRoute('bk')">Navigate</button>
                 </div>
             `;
 
@@ -113,7 +120,7 @@
 
 
             // farm marker route
-            const farmMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space the marker away from user
+            farmMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space the marker away from user
 
             
             // popup content for farm route marker
@@ -121,7 +128,7 @@
                 <div class="farmPopup" style="text-align: center;">
                     <img src="Icons/Images/FarmRoute.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
                     <p>This is the Farm Route </p>
-                    <button onclick="navigateToFarmRoute()">Navigate</button>
+                    <button onclick="navigateToRoute('farm')">Navigate</button>
                 </div>
             `;
             farmMarker.bindPopup(farmPopupContent);
@@ -129,13 +136,13 @@
 
 
             // busy bee route
-            const busyBeeMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space out the marker away from user
+            busyBeeMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space out the marker away from user
 
             const busyBeePopupContent = `
                 <div class="busyBeePopup" style="text-align: center;">
                     <img src="Icons/Images/BusyBee.jpg" alt="Image" style="width: 100px; height: 100px; border-radius: 10px;">
                     <p>This is the Busy Bee Route </p>
-                    <button onclick="navigateToBusyBeeRoute()">Navigate</button>
+                    <button onclick="navigateToRoute('busyBee')">Navigate</button>
                 </div>
             `;
             busyBeeMarker.bindPopup(busyBeePopupContent);
@@ -151,18 +158,46 @@
             }
         }
     
-        function navigateToBkRoute() {
-            alert("Navigating to the Bee's Knees Park Route...");
+        // navigate to specific route when a marker's "navigate" is clicked
+        function navigateToRoute(route) {
+            let routeMarkerLatLng;
+            switch(route) { // switch statement to see which marker is currently being used
+                case 'bk':
+                    routeMarkerLatLng = bkMarker.getLatLng();
+                    break;
+                case 'farm':
+                    routeMarkerLatLng = farmMarker.getLatLng();
+                    break;
+                case 'busyBee':
+                    routeMarkerLatLng = busyBeeMarker.getLatLng();
+                    break;
+            }
+            const userLatLng = marker.getLatLng();
+            displayRoute(userLatLng, routeMarkerLatLng);
+            // alert("Navigating to the route...");
         }
 
-        function navigateToFarmRoute(){
-            alert("Navigating to the Farm Route...");
+        // displaying the route from navigateToRoute function 
+        function displayRoute(startLatLng, endLatLng) {
+            // remove existing route if any
+            if (routeControl) {
+                map.removeControl(routeControl);
+            }
+            // calculate and display route
+            routeControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(startLatLng.lat, startLatLng.lng),
+                    L.latLng(endLatLng.lat, endLatLng.lng)
+                ]
+            }).addTo(map);
         }
 
-        function navigateToBusyBeeRoute(){
-            alert("Navigating to the Busy Bee Route...");
+        function endRoute() {
+            // remove existing route if any
+            if (routeControl) {
+                map.removeControl(routeControl);
+            }
         }
-
 
         // generating random coordinates based off of user's geolocation
         function getRandomCoordinatesAroundUser(lat, lng, radius) {
@@ -176,8 +211,3 @@
         }
     </script>
 </body>
-</html>
-
-
-
-

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buzzy Stride Routes Map</title>
     <link rel="icon" href="Icons/Logo.png">
-    <!-- Linking Leaflet -->
+    <!-- Linking Leaflet Styles-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> 
     <style>
 
@@ -36,24 +36,35 @@
         // initializing map
         const map = L.map('map'); 
         
-        
+        // displaying instructions/welcome before entering in
         alert("Welcome to Buzzy Stride! Tap OK to see your nearby routes.");
         
         // coordinates and zoom level 
         map.setView([51.505, -0.09], 13); 
     
+        
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map); 
         //map data source and associates with map
     
+        // map element variables
         let marker, circle, zoomed;
+
+        // tracking if markers have been created
+        let markersCreated = false;
     
+        // called when geolocation is found
         navigator.geolocation.watchPosition(success, error);
     
         function success(pos) {
+            // Check if markers have already been created
+            if (markersCreated) {
+                return;
+            }
     
+            // latitude, longitude, and accuracy from found geolocation
             const lat = pos.coords.latitude;
             const lng = pos.coords.longitude;
             const accuracy = pos.coords.accuracy;
@@ -85,11 +96,8 @@
             map.setView([lat, lng]);
     
 
-
             // bee's knees marker route
-            const bkLat = 51.45544;
-            const bkLng = -2.61891;
-            const bkMarker = L.marker([bkLat, bkLng]).addTo(map);
+            const bkMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map); // 1.3 to space marker away from user
     
             // popup content for bk route marker
             const bkPopupContent = `
@@ -105,9 +113,7 @@
 
 
             // farm marker route
-            const farmLat = 51.447768;
-            const farmLng = -2.618752;
-            const farmMarker = L.marker([farmLat, farmLng]).addTo(map);
+            const farmMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space the marker away from user
 
             
             // popup content for farm route marker
@@ -123,9 +129,7 @@
 
 
             // busy bee route
-            const bbLat = 51.45369;
-            const bbLng = -2.61000;
-            const busyBeeMarker = L.marker([bbLat, bbLng]).addTo(map);
+            const busyBeeMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map);  // 1.3 to space out the marker away from user
 
             const busyBeePopupContent = `
                 <div class="busyBeePopup" style="text-align: center;">
@@ -136,20 +140,18 @@
             `;
             busyBeeMarker.bindPopup(busyBeePopupContent);
     
+            markersCreated = true; // Markers have been created
         }
     
         function error(err) {
-    
             if (err.code === 1) {
                 alert("Please allow geolocation access");
             } else {
                 alert("Cannot get current location");
             }
-    
         }
     
         function navigateToBkRoute() {
-        
             alert("Navigating to the Bee's Knees Park Route...");
         }
 
@@ -160,12 +162,21 @@
         function navigateToBusyBeeRoute(){
             alert("Navigating to the Busy Bee Route...");
         }
-    </script>
 
-<!-- <h1>Hello this is a test to see where the H1 text will</h1> -->
+
+        // generating random coordinates based off of user's geolocation
+        function getRandomCoordinatesAroundUser(lat, lng, radius) {
+            const latOffset = (Math.random() - 0.5) * (radius / 111.32); // 1 degree of latitude is approximately 111.32 km
+            const lngOffset = (Math.random() - 0.5) * (radius / (111.32 * Math.cos(lat * Math.PI / 180))); // 1 degree of longitude varies depending on the latitude
+
+            const newLat = lat + latOffset;
+            const newLng = lng + lngOffset;
+
+            return [newLat, newLng];
+        }
+    </script>
 </body>
 </html>
-
 
 
 

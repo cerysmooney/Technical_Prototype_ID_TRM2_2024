@@ -201,11 +201,16 @@
             }
             const userLatLng = marker.getLatLng();
             displayRoute(userLatLng, routeMarkerLatLng);
-            // alert("Navigating to the route...");
+            // alert("Navigating to the route...")
+    
         }
 
         // displaying the route from navigateToRoute function 
         function displayRoute(startLatLng, endLatLng) {
+
+            if (bkMarker.isPopupOpen()) {
+                bkMarker.closePopup();
+            }
             // remove existing route if any
             if (routeControl) {
                 map.removeControl(routeControl);

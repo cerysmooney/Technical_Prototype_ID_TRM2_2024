@@ -204,7 +204,7 @@
             endRouteButton.textContent = 'End Route';
             endRouteButton.classList.add('endRouteButton'); // styling
             endRouteButton.onclick = endRoute; // linking to endRoute function that removes the route if clicked
-            map.getContainer().appendChild(endRouteButton);
+            map.getContainer().appendChild(endRouteButton); //making sure it shows up on the map
         }
 
         // generating random coordinates based off of user's geolocation

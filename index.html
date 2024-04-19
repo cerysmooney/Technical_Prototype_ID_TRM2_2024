@@ -196,12 +196,6 @@
             if (routeControl) {
                 map.removeControl(routeControl);
             }
-
-            // remove "end route" button if it's clicked so it only appears when a navigation route is activated
-            const endRouteButton = document.querySelector('.endRouteButton');
-            if (endRouteButton) {
-                endRouteButton.remove();
-            }
         }
 
         // button that when clicked removes the activated route from map 

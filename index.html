@@ -196,6 +196,12 @@
             if (routeControl) {
                 map.removeControl(routeControl);
             }
+            
+            const endRouteButton = document.querySelector('.endRouteButton');
+            
+            if (endRouteButton) {
+                endRouteButton.remove();
+            }
         }
 
         // button that when clicked removes the activated route from map 

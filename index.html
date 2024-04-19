@@ -188,7 +188,9 @@
                     L.latLng(startLatLng.lat, startLatLng.lng),
                     L.latLng(endLatLng.lat, endLatLng.lng)
                 ],
-                
+                draggableWaypoints: false, // not allowing user to drag waypoints
+                addWaypoints: false, // not allowing user to add anymore waypoints by tapping
+
                 lineOptions: {
                     styles: [{ color: '#333', opacity: 1, weight: 3 }]
                 }

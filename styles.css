@@ -1,4 +1,44 @@
-/* #map {
-    width: 500;
-    height: 500;
-} */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+    overflow: hidden; 
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-content img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.navigate-button {
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    #map {
+        height: 50vh; 
+    }
+}
+
+/* styling the directions box */
+.leaflet-routing-container {
+    width: 200px; 
+    height: 200px; 
+    overflow-y: auto; /* scrollbar incase of overflow*/
+    border: 1px solid #ccc; /*  border for visibility */
+    background-color: whitesmoke; /*  solid background for visibility */
+    text-align: center;
+}

@@ -9,53 +9,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> 
     <!-- Linking Leaflet Routing Machine Styles-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.css" />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
-            overflow: hidden; 
-        }
-        
-        #map {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        .popup-content {
-            text-align: center;
-        }
-
-        .popup-content img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-        }
-
-        .navigate-button {
-            margin-top: 10px;
-        }
-
-        @media screen and (min-width: 768px) {
-            #map {
-                height: 50vh; 
-            }
-        }
-        
-        /* styling the directions box */
-        .leaflet-routing-container {
-            width: 200px; 
-            height: 200px; 
-            overflow-y: auto; /* scrollbar incase of overflow*/
-            border: 1px solid #ccc; /*  border for visibility */
-            background-color: whitesmoke; /*  solid background for visibility */
-            text-align: center;
-        }
-    </style>
 </head>
+
 <body>
     <div id="map"></div>
 

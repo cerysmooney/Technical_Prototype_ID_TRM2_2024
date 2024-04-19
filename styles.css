@@ -23,8 +23,26 @@ body {
     border-radius: 10px;
 }
 
+
+/* took the styles from my dissertation buttons lol */
 .navigate-button {
     margin-top: 10px;
+    padding: 4px 8px; 
+    text-align: center;
+    cursor: pointer;
+    background-color: #588157;
+    color: white;
+    font-size: 1.2em; 
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #333;
+    transition: .2s;
+}
+
+.navigate-button:hover{
+    box-shadow: 3px 3px 3px lightgray; 
+    transform: scale(1.05);
+    background-color: white;
+    color: black;
 }
 
 @media screen and (min-width: 768px) {
@@ -44,9 +62,26 @@ body {
     text-wrap: balance;
 }
 
+/* took the styles from my dissertation buttons lol */
 .endRouteButton {
-    position: fixed; /* Change positioning to fixed */
+    position: fixed;
     top: 230px;
     right: 10px;
     z-index: 1000;
+    padding: 4px 8px; 
+    text-align: center;
+    cursor: pointer;
+    background-color: #588157;
+    color: white;
+    font-size: 1.2em; 
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #333;
+    transition: .2s;
+}
+
+.endRouteButton:hover {
+    box-shadow: 3px 3px 3px lightgray; 
+    transform: scale(1.05);
+    background-color: white;
+    color: black;
 }

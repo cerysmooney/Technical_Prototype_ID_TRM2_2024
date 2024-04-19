@@ -39,10 +39,6 @@
             margin-top: 10px;
         }
 
-        #endRouteButton {
-            display: none;
-        }
-
         @media screen and (min-width: 768px) {
             #map {
                 height: 50vh; 
@@ -206,7 +202,7 @@
             const userLatLng = marker.getLatLng();
             displayRoute(userLatLng, routeMarkerLatLng);
             // alert("Navigating to the route...")
-            document.getElementById("endRouteButton").style.display = "block";
+    
         }
 
         // displaying the route from navigateToRoute function 
@@ -255,7 +251,6 @@
             return [newLat, newLng];
         }
     </script>
-    <button id="endRouteButton" class="navigate-button" onclick="endRoute()"> End Route</button>
 </body>
 </html>
 

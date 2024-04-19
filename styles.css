@@ -40,5 +40,12 @@ body {
     overflow-y: auto; /* scrollbar incase of overflow*/
     border: 1px solid #ccc; /*  border for visibility */
     background-color: whitesmoke; /*  solid background for visibility */
-    text-align: center;
+    text-align: left
+}
+
+.endRouteButton {
+    position: fixed; /* Change positioning to fixed */
+    top: 215px;
+    right: 10px;
+    z-index: 1000;
 }

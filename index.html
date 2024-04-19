@@ -159,8 +159,9 @@
             const userLatLng = marker.getLatLng();
             displayRoute(userLatLng, routeMarkerLatLng);
             // alert("Navigating to the route...")
-    
+            showEndRouteButton();  // adding button that allows users to end the route (removes route from view)
         }
+
 
         // displaying the route from navigateToRoute function 
         function displayRoute(startLatLng, endLatLng) {
@@ -195,6 +196,15 @@
             if (routeControl) {
                 map.removeControl(routeControl);
             }
+        }
+
+        // button that when clicked removes the activated route from map 
+        function showEndRouteButton(){
+            const endRouteButton = document.createElement('button');
+            endRouteButton.textContent = 'End Route';
+            endRouteButton.classList.add('endRouteButton'); // styling
+            endRouteButton.onclick = endRoute; // linking to endRoute function that removes the route if clicked
+            map.getContainer().appendChild(endRouteButton);
         }
 
         // generating random coordinates based off of user's geolocation

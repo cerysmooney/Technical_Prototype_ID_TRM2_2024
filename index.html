@@ -205,7 +205,14 @@
             endRouteButton.classList.add('endRouteButton'); // styling
             endRouteButton.onclick = endRoute; // linking to endRoute function that removes the route if clicked
             map.getContainer().appendChild(endRouteButton); //making sure it shows up on the map
+            
+            // removing end route button if it is clicked on, this way it can only show up if the user presses "navigate" on each route
+            map.getContainer().addEventListener('click', function(event) {
+        if (event.target.classList.contains('endRouteButton')) {
+            endRouteButton.remove(); 
         }
+    });
+}
 
         // generating random coordinates based off of user's geolocation
         function getRandomCoordinatesAroundUser(lat, lng, radius) {

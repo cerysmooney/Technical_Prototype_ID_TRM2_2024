@@ -187,7 +187,12 @@
                 waypoints: [
                     L.latLng(startLatLng.lat, startLatLng.lng),
                     L.latLng(endLatLng.lat, endLatLng.lng)
-                ]
+                ],
+
+                lineOptions: {
+                    styles: [{ color: '#333', opacity: 1, weight: 3 }]
+                }
+                
             }).addTo(map);
         }
 

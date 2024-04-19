@@ -211,6 +211,11 @@
             if (bkMarker.isPopupOpen()) {
                 bkMarker.closePopup();
             }
+
+            if (busyBeeMarker.isPopupOpen()) {
+                busyBeeMarker.closePopup();
+            }
+
             // remove existing route if any
             if (routeControl) {
                 map.removeControl(routeControl);

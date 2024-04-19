@@ -216,6 +216,9 @@
                 busyBeeMarker.closePopup();
             }
 
+            if (farmMarker.isPopupOpen()) {
+                farmMarker.closePopup();
+            }
             // remove existing route if any
             if (routeControl) {
                 map.removeControl(routeControl);

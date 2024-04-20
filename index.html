@@ -90,10 +90,13 @@
             map.setView([lat, lng]);
     
 
+            // ENDING CODE WHERE I FOLLOWED https://www.youtube.com/watch?v=NyjMmNCtKf4&list=LL&index=3
+
+            
             // bee's knees marker route
             bkMarker = L.marker(getRandomCoordinatesAroundUser(lat, lng, 1.3)).addTo(map); // 1.3 to space marker away from user
 
-            // ENDING CODE WHERE I FOLLOWED https://www.youtube.com/watch?v=NyjMmNCtKf4&list=LL&index=3
+           
     
             // popup content for bk route marker
             const bkPopupContent = `
@@ -200,7 +203,7 @@
                 addWaypoints: false, // not allowing user to add anymore waypoints by tapping
 
                 lineOptions: {
-                    styles: [{ color: '#333', opacity: 1, weight: 3 }]
+                    styles: [{ color: '#EF820D', opacity: 1, weight: 4 }]
                 }
                 
             }).addTo(map);

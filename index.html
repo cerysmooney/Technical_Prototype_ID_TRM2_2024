@@ -236,6 +236,7 @@
 }
 
         // generating random coordinates based off of user's geolocation
+        // https://stackoverflow.com/questions/7477003/calculating-new-longitude-latitude-from-old-n-meters and ChatGPT (https://chat.openai.com/) helped a lot
         function getRandomCoordinatesAroundUser(lat, lng, radius) {
             const latOffset = (Math.random() - 0.5) * (radius / 111.32); // 1 degree of latitude is approximately 111.32 km
             const lngOffset = (Math.random() - 0.5) * (radius / (111.32 * Math.cos(lat * Math.PI / 180))); // 1 degree of longitude varies depending on the latitude

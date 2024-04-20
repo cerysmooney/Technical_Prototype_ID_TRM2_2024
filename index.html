@@ -142,7 +142,7 @@
             markersCreated = true; // Markers have been created
         }
     
-        function error(err) {
+        function error(err) {   // if the user clicks "don't allow"
             if (err.code === 1) {
                 alert("Please allow geolocation access");
             } else {

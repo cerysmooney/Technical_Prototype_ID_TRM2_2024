@@ -77,7 +77,7 @@
                 // shadowUrl: 'Icons/navigation.png'
             });
     
-            // marker to the map and a circle for accuracy  **changed to radius of 50 for mobile view being in the circle**
+            // marker to the map and a circle for accuracy  
             marker = L.marker([lat, lng], { icon: userIcon }).addTo(map);
             circle = L.circle([lat, lng], { radius: accuracy * 2 }).addTo(map);
     

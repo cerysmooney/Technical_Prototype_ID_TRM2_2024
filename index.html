@@ -79,7 +79,7 @@
     
             // marker to the map and a circle for accuracy
             marker = L.marker([lat, lng], { icon: userIcon }).addTo(map);
-            circle = L.circle([lat, lng], { radius: accuracy * 100 }).addTo(map);
+            circle = L.circle([lat, lng], { radius: accuracy * 50 }).addTo(map);
     
             // zoom in boundaries
             if (!zoomed) {
